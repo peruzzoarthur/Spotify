@@ -17,6 +17,7 @@ export const useLikedSongs = ({ sdk }: useLikedSongsProps) => {
   const [likedSongsData, setLikedSongsData] = useState<
     TrackWithAudioFeatures[] | undefined
   >();
+  const [artistIds, setArtistIds] = useState<string[]>([]);
 
   // update function for keeping all fetched data in the same array
 
@@ -48,6 +49,13 @@ export const useLikedSongs = ({ sdk }: useLikedSongsProps) => {
       );
 
       const ids = fetchLikedSongs.items.map((t) => t.track.id);
+
+      setArtistIds(
+        fetchLikedSongs.items
+          .map((t) => t.track.artists)
+          .flatMap((a) => a)
+          .map((a) => a.id)
+      );
 
       const fetchAudioFeatures = await sdk.tracks.audioFeatures(ids);
 
@@ -116,5 +124,6 @@ export const useLikedSongs = ({ sdk }: useLikedSongsProps) => {
     sortedTracks,
     setSortValue,
     likedSongsData,
+    artistIds,
   };
 };

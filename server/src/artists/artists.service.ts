@@ -54,6 +54,7 @@ export class ArtistsService {
                 name: artistDto.genres[index],
                 timestamp: timestampNow,
                 createdAt: formatTimestampToDate(timestampNow),
+                discoveredBy: artistDto.user,
               });
               return await this.genresRepository.save(newGenre);
             }
@@ -68,6 +69,7 @@ export class ArtistsService {
         genres: genres,
         timestamp: timestampNow,
         createdAt: formatTimestampToDate(timestampNow),
+        discoveredBy: artistDto.user,
       });
 
       return await this.artistsRepository.save(artist);

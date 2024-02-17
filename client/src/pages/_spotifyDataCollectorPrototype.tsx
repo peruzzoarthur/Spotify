@@ -5,49 +5,31 @@ import { ArtistByIdHeader } from "@/components/artistById/ArtistByIdHeader";
 import { ArtistByIdRelatedArtistsSection } from "@/components/artistById/ArtistByIdRelatedArtistsSection";
 import { ArtistByIdTopTracksSection } from "@/components/artistById/ArtistByIdTopTracksSection";
 import { AnalogBackground } from "@/components/background/analogBackground";
-import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
 import { useArtistById } from "@/hooks/useArtistById";
+import { useCollectArtist } from "@/hooks/useCollectArtist";
 import { useSdk } from "@/hooks/useSdk";
+import { useUserProfile } from "@/hooks/useUserProfile";
 import { SpotifyApi } from "@spotify/web-api-ts-sdk";
-import axios from "axios";
 import React from "react";
 
-export const Redis: React.FC = () => {
+export const SpotifyDataCollectorPrototype: React.FC = () => {
   const sdk: SpotifyApi = useSdk();
 
   const { artist, relatedArtists, topTracks, artistAlbums } = useArtistById({
     sdk,
   });
 
-  // const addArtistToRedis = () => {
+  const { data: userProfile } = useUserProfile({ sdk });
 
-  //   fetch("http://localhost:3000/saveArtistsByGenre", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(requestBody),
-  //   })
-  //     .then((response) => {
-  //       console.log(response);
-  //       // Handle response
-  //     })
-  //     .catch((error) => {
-  //       throw new Error(error.message);
-  //     });
-  // };
-
-  const addArtist2Redis = async () => {
-    const requestBody = {
-      genre: "test-genre",
-      artists: [artist.artistData?.name],
-    };
-    const { data } = await axios.post(
-      "http://localhost:3000/saveArtistsByGenre",
-      requestBody
-    );
-    console.log(data);
-  };
+  const { collect } = useCollectArtist(
+    artist.artistData?.name,
+    artist.artistData?.genres,
+    userProfile?.display_name
+  );
+  if (artist && userProfile) {
+    collect();
+  }
 
   return (
     <>
@@ -55,9 +37,9 @@ export const Redis: React.FC = () => {
         {artist.artistData && (
           <ArtistByIdHeader artistData={artist.artistData} />
         )}
-        <Button className="text-white bg-black" onClick={addArtist2Redis}>
-          REDIS
-        </Button>
+        {/* <Button className="text-white bg-black" onClick={collect}>
+          Collect
+        </Button> */}
 
         {topTracks.artistTopTracks && (
           <>

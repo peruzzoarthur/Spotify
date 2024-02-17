@@ -25,6 +25,9 @@ export class Genre {
   @Column()
   createdAt: string;
 
-  @ManyToMany(() => Artist, (artist) => artist.genres)
+  @ManyToMany(() => Artist, (artist) => artist.genres, { eager: true })
   artists?: Artist[];
+
+  @Column()
+  discoveredBy?: string;
 }

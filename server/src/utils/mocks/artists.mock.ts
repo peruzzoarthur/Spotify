@@ -46,6 +46,7 @@ export const artistSavedEntityMock: Artist = {
 export const artistDtoMock: CreateArtistDto = {
   name: 'The Ogre Magixx',
   genres: ['Ogre Music'],
+  user: 'dloc',
 };
 
 export const artistSavedWithoutGenresMock: Artist = {

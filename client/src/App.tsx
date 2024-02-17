@@ -15,7 +15,8 @@ import { Search } from "./pages/Search";
 import { ArtistById } from "./pages/ArtistById";
 import { Albums } from "./pages/Albums";
 import { Login } from "./pages/Login";
-import { Redis } from "./pages/RedisTesting";
+import { SpotifyDataCollectorPrototype } from "./pages/_spotifyDataCollectorPrototype";
+
 // import { TrackById } from "./pages/TrackById";
 
 const queryClient = new QueryClient();
@@ -41,7 +42,10 @@ function App() {
             <Route path="/artist/:id" element={<ArtistById />} />
             <Route path="/recommendation" element={<Recommendation />} />
             <Route path="/search" element={<Search />} />
-            <Route path="/r3dis/:id" element={<Redis />} />
+            <Route
+              path="/test_artist/:id"
+              element={<SpotifyDataCollectorPrototype />}
+            />
           </Routes>
         </CartProvider>
       </QueryClientProvider>
