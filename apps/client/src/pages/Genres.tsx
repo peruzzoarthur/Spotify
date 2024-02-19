@@ -1,8 +1,8 @@
 import { ArtistCardWithAddButtonImageUrl } from "@/components/ArtistCard";
 import { AnalogBackground } from "@/components/background/analogBackground";
 import { useGetGenres } from "@/hooks/useGetGenres";
-import { useSdk } from "@/hooks/useSdk";
-import { SpotifyApi } from "@spotify/web-api-ts-sdk";
+// import { useSdk } from "@/hooks/useSdk";
+// import { SpotifyApi } from "@spotify/web-api-ts-sdk";
 import {
   Carousel,
   CarouselContent,
@@ -10,48 +10,41 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { ContainerDark } from "@/components/Container";
 
 export const Genres = () => {
-  const sdk: SpotifyApi = useSdk();
-
-  const { allGenresData } = useGetGenres({ sdk });
+  const { allGenresData } = useGetGenres();
 
   return (
     <>
       <AnalogBackground>
-        <div className="w-9/12">
-          {allGenresData?.map((g, index) => (
-            <div key={index}>
+        <ContainerDark>
+          {allGenresData?.map((g) => (
+            <Carousel
+              opts={{
+                align: "center",
+              }}
+              className="w-1/2 max-w-sm"
+            >
               <p className="text-white">{g.name}</p>
 
-              <Carousel
-                opts={{
-                  align: "center",
-                }}
-                className="w-full max-w-sm"
-              >
-                <CarouselContent>
-                  {Array.from({ length: 5 }).map((_, index) => (
-                    <CarouselItem
+              <CarouselContent>
+                {g.artists?.map((a, index) => (
+                  <CarouselItem key={index} className="md:basis-96 lg:basis-96">
+                    <ArtistCardWithAddButtonImageUrl
+                      imageUrl={a.imageUrl}
+                      name={a.name}
+                      id={a.spotifyId}
                       key={index}
-                      className="md:basis-1/2 lg:basis-1/3"
-                    >
-                      {g.artists?.map((a) => (
-                        <ArtistCardWithAddButtonImageUrl
-                          imageUrl={a.imageUrl}
-                          name={a.name}
-                          id={a.spotifyId}
-                        />
-                      ))}
-                    </CarouselItem>
-                  ))}
-                </CarouselContent>
-                <CarouselPrevious />
-                <CarouselNext />
-              </Carousel>
-            </div>
+                    />
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious />
+              <CarouselNext />
+            </Carousel>
           ))}
-        </div>
+        </ContainerDark>
       </AnalogBackground>
     </>
   );
