@@ -19,14 +19,16 @@ export const Genres = () => {
     <>
       <AnalogBackground>
         <ContainerDark>
-          {allGenresData?.map((g) => (
+          {allGenresData?.map((g, index) => (
             <Carousel
               opts={{
                 align: "center",
               }}
               className="w-1/2 max-w-sm"
             >
-              <p className="text-white">{g.name}</p>
+              <p className="text-white" key={index}>
+                {g.name}
+              </p>
 
               <CarouselContent>
                 {g.artists?.map((a, index) => (
