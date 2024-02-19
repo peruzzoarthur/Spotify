@@ -15,7 +15,6 @@ import { Search } from "./pages/Search";
 import { ArtistById } from "./pages/ArtistById";
 import { Albums } from "./pages/Albums";
 import { Login } from "./pages/Login";
-import { SpotifyDataCollectorPrototype } from "./pages/_spotifyDataCollectorPrototype";
 import { Genres } from "./pages/Genres";
 
 // import { TrackById } from "./pages/TrackById";
@@ -43,10 +42,7 @@ function App() {
             <Route path="/artist/:id" element={<ArtistById />} />
             <Route path="/recommendation" element={<Recommendation />} />
             <Route path="/search" element={<Search />} />
-            <Route
-              path="/test_artist/:id"
-              element={<SpotifyDataCollectorPrototype />}
-            />
+
             <Route path="/genres" element={<Genres />} />
           </Routes>
         </CartProvider>
