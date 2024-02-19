@@ -38,6 +38,8 @@ export const LikedSongs = () => {
       name: artist.name,
       genres: artist.genres,
       user: currentUserProfile?.display_name,
+      spotifyId: artist.id,
+      imageUrl: artist.images[0].url,
     });
   });
 

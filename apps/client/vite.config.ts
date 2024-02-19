@@ -6,6 +6,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import eslint from "vite-plugin-eslint";
 import path from "path";
+import commonjs from "@rollup/plugin-commonjs";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -31,6 +32,12 @@ export default defineConfig({
   },
 
   build: {
+    rollupOptions: {
+      plugins: [commonjs()],
+    },
     sourcemap: true,
+  },
+  optimizeDeps: {
+    include: ["api-contract/**/*"],
   },
 });

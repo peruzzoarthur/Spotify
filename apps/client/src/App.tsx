@@ -16,6 +16,7 @@ import { ArtistById } from "./pages/ArtistById";
 import { Albums } from "./pages/Albums";
 import { Login } from "./pages/Login";
 import { SpotifyDataCollectorPrototype } from "./pages/_spotifyDataCollectorPrototype";
+import { Genres } from "./pages/Genres";
 
 // import { TrackById } from "./pages/TrackById";
 
@@ -46,6 +47,7 @@ function App() {
               path="/test_artist/:id"
               element={<SpotifyDataCollectorPrototype />}
             />
+            <Route path="/genres" element={<Genres />} />
           </Routes>
         </CartProvider>
       </QueryClientProvider>

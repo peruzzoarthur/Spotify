@@ -80,6 +80,20 @@ export type ArtistProps = {
   genres: string;
 };
 
+export type ArtistPropsWithImageUrl = {
+  imageUrl?: string;
+  name: string;
+  order?: number;
+  artists?: string;
+  id: string;
+  handleAddToCart?: () => void;
+  handleRemoveFromCart?: () => void;
+  handleClick?: () => void;
+  index?: number;
+  uri?: string;
+  genres?: string;
+};
+
 export type PlaylistProps = {
   image: Image[];
   name: string;

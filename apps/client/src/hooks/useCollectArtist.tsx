@@ -4,12 +4,16 @@ type requestBodyParams = {
   name: string | undefined;
   genres: string[] | undefined;
   user: string | undefined;
+  spotifyId: string | undefined;
+  imageUrl: string | undefined;
 };
 
 export const useCollectArtist = (
   artistName: string | undefined,
   artistGenres: string[] | undefined,
-  user: string | undefined
+  user: string | undefined,
+  spotifyId: string | undefined,
+  imageUrl: string | undefined
 ) => {
   const collect = async () => {
     try {
@@ -17,13 +21,14 @@ export const useCollectArtist = (
         name: artistName,
         genres: artistGenres,
         user: user,
+        spotifyId: spotifyId,
+        imageUrl: imageUrl,
       };
       const { data } = await axios.post(
         "http://localhost:3000/artists",
         requestBody
       );
-      console.log("imaworking");
-      console.log(data);
+
       return data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
