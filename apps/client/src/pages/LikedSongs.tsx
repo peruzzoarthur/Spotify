@@ -12,8 +12,8 @@ import { useGetCurrentUserProfile } from "@/hooks/useGetCurrentUserProfilePictur
 import { CreateProgress } from "@/components/Progress";
 import { useCreateProgress } from "@/hooks/useCreateProgress";
 import { useLikedSongs } from "@/hooks/useLikedSongs";
-// import { useGetArtistInfoById } from "@/hooks/useGetArtistInfoByIdArray";
-// import axios from "axios";
+import { useGetArtistInfoById } from "@/hooks/useGetArtistInfoByIdArray";
+import axios from "axios";
 
 export const LikedSongs = () => {
   const { progress } = useCreateProgress({
@@ -24,29 +24,25 @@ export const LikedSongs = () => {
 
   const sdk: SpotifyApi = useSdk();
 
-  const {
-    query,
-    setSortValue,
-    sortedTracks,
-    likedSongsData,
-    //  artistIds
-  } = useLikedSongs({
-    sdk,
-  });
+  const { query, setSortValue, sortedTracks, likedSongsData, artistIds } =
+    useLikedSongs({
+      sdk,
+    });
 
   const currentUserProfile = useGetCurrentUserProfile({ sdk });
 
-  // const { artistData } = useGetArtistInfoById({ sdk: sdk, ids: artistIds });
+  const { artistData } = useGetArtistInfoById({ sdk: sdk, ids: artistIds });
 
-  // artistData?.map((artist) => {
-  //   axios.post("http://localhost:3000/artists", {
-  //     name: artist.name,
-  //     genres: artist.genres,
-  //     user: currentUserProfile?.display_name,
-  //     spotifyId: artist.id,
-  //     imageUrl: artist.images[0].url,
-  //   });
-  // });
+  artistData?.map((artist) => {
+    axios.post("http://localhost:3000/artists", {
+      name: artist.name,
+      genres: artist.genres,
+      user: currentUserProfile?.display_name,
+      spotifyId: artist.id,
+      imageUrl: artist.images[0]?.url ?? "defaultImageUrl",
+      spotifyUri: artist.uri,
+    });
+  });
 
   if (query.error) {
     // TODO

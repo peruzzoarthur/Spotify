@@ -2,12 +2,13 @@
 // import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { useMemo, useState } from "react";
 
 type Genre = {
   name: string;
   timestamp: string;
   createdAt: string;
-  artists?: {
+  artists: {
     id: string;
     name: string;
     timestamp: string;
@@ -15,23 +16,35 @@ type Genre = {
     discoveredBy?: string;
     spotifyId: string;
     imageUrl?: string;
+    spotifyUri?: string;
   }[];
   discoveredBy?: string;
 };
 
 export const useGetGenres = () => {
-  const { data: allGenresData } = useQuery({
+  const { data: allGenresData, isFetching } = useQuery({
     queryKey: ["get-all-genres"],
-    queryFn: async (): Promise<Genre[]> => {
+    queryFn: async (): Promise<Genre[] | undefined> => {
       const { data }: { data: Genre[] } = await axios.get(
         "http://localhost:3000/genres"
       );
-
-      return data;
+      if (data) {
+        return data;
+      }
+      return;
     },
   });
 
+  const [arraySize, setArraySize] = useState<number>(3);
+
+  const filteredGenresData = useMemo(() => {
+    return allGenresData?.filter((genre) => genre.artists.length >= arraySize);
+  }, [allGenresData, arraySize]);
+
   return {
     allGenresData,
+    isFetching,
+    filteredGenresData,
+    setArraySize,
   };
 };

@@ -23,11 +23,13 @@ export const TrackTableRow: React.FC<TrackProps> = ({
         <TableCell className="font-medium">{order}</TableCell>
         <TableCell>
           <Link to={`${uri}`}>
-            <img
-              className="max-h-36 max-w-36 min-w-44 min-h-44"
-              src={image[0].url}
-              alt={name}
-            />
+            {image[0].url && (
+              <img
+                className="max-h-36 max-w-36 min-w-44 min-h-44"
+                src={image[0].url}
+                alt={name}
+              />
+            )}
           </Link>
         </TableCell>
         <TableCell className="font-medium">{name}</TableCell>

@@ -110,7 +110,7 @@ export const ArtistCardWithAddButtonImageUrl: React.FC<
 }) => {
   return (
     <>
-      <Card className="mt-6 mb-2 ml-6 mr-6 text-white transition-all duration-700 bg-black bg-opacity-60 hover:bg-black hover:bg-opacity-20 hover:pt-2 hover:pl-3 h-420 w-240">
+      <Card className="mt-6 mb-2 ml-6 mr-6 text-white transition-all duration-700 bg-black bg-opacity-60 hover:bg-black hover:bg-opacity-20 hover:pt-2 hover:pl-2 h-420 w-240">
         <CardHeader>
           {imageUrl && (
             <Link to={`/artist/${id}`}>

@@ -6,6 +6,7 @@ type requestBodyParams = {
   user: string | undefined;
   spotifyId: string | undefined;
   imageUrl: string | undefined;
+  spotifyUri: string | undefined;
 };
 
 export const useCollectArtist = (
@@ -13,7 +14,8 @@ export const useCollectArtist = (
   artistGenres: string[] | undefined,
   user: string | undefined,
   spotifyId: string | undefined,
-  imageUrl: string | undefined
+  imageUrl: string | undefined,
+  spotifyUri: string | undefined
 ) => {
   const collect = async () => {
     try {
@@ -23,6 +25,7 @@ export const useCollectArtist = (
         user: user,
         spotifyId: spotifyId,
         imageUrl: imageUrl,
+        spotifyUri: spotifyUri,
       };
       const { data } = await axios.post(
         "http://localhost:3000/artists",
