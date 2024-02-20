@@ -24,15 +24,18 @@ export const Genres = () => {
               opts={{
                 align: "center",
               }}
-              className="w-1/2 max-w-sm"
+              className="w-3/4 sm:w-96 md:w-96 lg:w-640 xl:w-960 2xl:w-1280"
             >
               <p className="text-white" key={index}>
                 {g.name}
               </p>
 
-              <CarouselContent>
+              <CarouselContent className="">
                 {g.artists?.map((a, index) => (
-                  <CarouselItem key={index} className="md:basis-96 lg:basis-96">
+                  <CarouselItem
+                    key={index}
+                    className="basis-80 sm:basis-72 md:basis-72 lg:basis-72 xl:basis-72 2xl:basis-72"
+                  >
                     <ArtistCardWithAddButtonImageUrl
                       imageUrl={a.imageUrl}
                       name={a.name}

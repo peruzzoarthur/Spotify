@@ -102,10 +102,15 @@ export const ArtistCardWithRemoveButton: React.FC<ArtistProps> = ({
 
 export const ArtistCardWithAddButtonImageUrl: React.FC<
   ArtistPropsWithImageUrl
-> = ({ imageUrl, name, handleClick, id }) => {
+> = ({
+  imageUrl,
+  name,
+  // handleClick,
+  id,
+}) => {
   return (
     <>
-      <Card className="mt-6 mb-2 ml-6 mr-6 text-white transition-all duration-700 bg-black bg-opacity-60 hover:bg-black hover:bg-opacity-20 hover:pt-2 hover:pl-3 h-460 w-300">
+      <Card className="mt-6 mb-2 ml-6 mr-6 text-white transition-all duration-700 bg-black bg-opacity-60 hover:bg-black hover:bg-opacity-20 hover:pt-2 hover:pl-3 h-420 w-240">
         <CardHeader>
           {imageUrl && (
             <Link to={`/artist/${id}`}>
@@ -115,9 +120,9 @@ export const ArtistCardWithAddButtonImageUrl: React.FC<
           <CardTitle className="text-xl">{name}</CardTitle>
           {/* <CardDescription className="font-light ">{genres}</CardDescription> */}
         </CardHeader>
-        <CardFooter className="">
+        {/* <CardFooter className="">
           <AddButton handleClick={handleClick} />
-        </CardFooter>
+        </CardFooter> */}
       </Card>
     </>
   );

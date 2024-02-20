@@ -6,9 +6,17 @@ type ContainerProps = {
   className?: string;
 };
 
-export const ContainerDark: React.FC<ContainerProps> = ({ children }) => {
+export const ContainerDark: React.FC<ContainerProps> = ({
+  children,
+  className,
+}) => {
   return (
-    <div className="flex flex-col items-center justify-center text-white bg-black rounded-md bg-opacity-80">
+    <div
+      className={twMerge(
+        "flex flex-col items-center justify-center text-white bg-black rounded-md bg-opacity-80",
+        className
+      )}
+    >
       {children}
     </div>
   );
