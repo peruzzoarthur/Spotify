@@ -20,7 +20,7 @@ export const Genres = () => {
   const { progress } = useCreateProgress({
     // initialProgress: 13,
     // finalProgress: 66,
-    delay: 10,
+    delay: 11,
   });
 
   return (
