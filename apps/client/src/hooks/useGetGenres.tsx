@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useMemo, useState } from "react";
 
-type Genre = {
+export type Genre = {
   name: string;
   timestamp: string;
   createdAt: string;
@@ -35,7 +35,7 @@ export const useGetGenres = () => {
     },
   });
 
-  const [arraySize, setArraySize] = useState<number>(3);
+  const [arraySize, setArraySize] = useState<number>(10);
 
   const filteredGenresData = useMemo(() => {
     return allGenresData?.filter((genre) => genre.artists.length >= arraySize);

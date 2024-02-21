@@ -58,11 +58,12 @@ export const useLikedSongs = ({ sdk }: useLikedSongsProps) => {
       );
 
       const fetchAudioFeatures = await sdk.tracks.audioFeatures(ids);
-
+      // TODO Here I might have an issue... If the track doesn't have an audio feature it will break the code probably :(
       const tracksWithAudioFeatures: TrackWithAudioFeatures[] =
         fetchLikedSongs.items.map((item) => {
           const correspondingAudioFeature = fetchAudioFeatures.find(
-            (audioFeature) => audioFeature.id === item.track.id
+            (audioFeature) =>
+              audioFeature !== null && audioFeature.id === item.track.id
           );
           return {
             ...item.track,
@@ -79,7 +80,7 @@ export const useLikedSongs = ({ sdk }: useLikedSongsProps) => {
     refetchOnMount: false,
     refetchOnWindowFocus: false,
 
-    initialPageParam: 0,
+    initialPageParam: 2450,
 
     getNextPageParam: (lastPage) => {
       if (lastPage?.next) {

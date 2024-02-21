@@ -22,15 +22,15 @@ export const TrackTableRow: React.FC<TrackProps> = ({
       <TableRow className="bg-black bg-opacity-10 hover:bg-green-200 hover:bg-opacity-10">
         <TableCell className="font-medium">{order}</TableCell>
         <TableCell>
-          <Link to={`${uri}`}>
-            {image[0].url && (
+          {image[0] && image[0].url && (
+            <Link to={`${uri}`}>
               <img
                 className="max-h-36 max-w-36 min-w-44 min-h-44"
                 src={image[0].url}
                 alt={name}
               />
-            )}
-          </Link>
+            </Link>
+          )}
         </TableCell>
         <TableCell className="font-medium">{name}</TableCell>
         {popularity && (

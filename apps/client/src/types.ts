@@ -180,7 +180,7 @@ export type TrackWithAudioFeatures = Track & {
 
 export type NewTrackWithAudioFeatures = {
   track: Track[];
-  audioFeatures: AudioFeatures[];
+  audioFeatures: AudioFeatures[] | undefined;
 };
 
 export type RecommendationsResponse = {
@@ -207,7 +207,7 @@ export type AudioFeatures = {
   analysis_url: string;
   duration_ms: number;
   time_signature: number;
-};
+} | null;
 
 export type AudioFeaturesWithListOrder = AudioFeatures & {
   default_list_order?: string;
