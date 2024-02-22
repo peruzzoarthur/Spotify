@@ -63,6 +63,11 @@ function Logo() {
               Liked Songs
             </DropdownMenuItem>
           </Link>
+          <Link to={`/genres`}>
+            <DropdownMenuItem className="text-xl cursor-pointer hover:bg-black hover:bg-opacity-60 focus:bg-black focus:bg-opacity-60">
+              Genres
+            </DropdownMenuItem>
+          </Link>
           <Link to={`/recommendation`}>
             <DropdownMenuItem className="text-xl cursor-pointer hover:bg-black hover:bg-opacity-60 focus:bg-black focus:bg-opacity-60">
               Recommendations List
