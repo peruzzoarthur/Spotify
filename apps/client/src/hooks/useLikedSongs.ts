@@ -80,7 +80,8 @@ export const useLikedSongs = ({ sdk }: useLikedSongsProps) => {
     refetchOnMount: false,
     refetchOnWindowFocus: false,
 
-    initialPageParam: 2450,
+    initialPageParam: 0,
+    // im at 2450 for loading db
 
     getNextPageParam: (lastPage) => {
       if (lastPage?.next) {

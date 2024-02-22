@@ -19,7 +19,7 @@ export const LikedSongs = () => {
   const { progress } = useCreateProgress({
     // initialProgress: 13,
     // finalProgress: 66,
-    delay: 800,
+    delay: 10,
   });
 
   const sdk: SpotifyApi = useSdk();
